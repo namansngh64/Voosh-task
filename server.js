@@ -4,6 +4,7 @@ const passport = require("passport");
 const session = require("express-session");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 const auth = require("./app/config/passport");
 const { handleError } = require("./app/config/error");
@@ -30,7 +31,7 @@ app.use(passport.session());
 auth();
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.use("/", require("./app/routes"));
